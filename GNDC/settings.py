@@ -28,9 +28,11 @@ RUTA_MODELO = join(BASE_DIR, 'prediccion_Total_venta.py')
 SECRET_KEY = '93l(+vpmkg)t3yeu4(^v09$%h5172e7moc!glr5-tkm2j1judn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = ['https://*.azurewebsites.net']
+CORS_ALLOW_ALL_ORIGINS: True
 
 #para los Super POPUP
 
