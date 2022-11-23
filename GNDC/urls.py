@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import re_path, include, reverse_lazy
 from usuarios import views
 from django.contrib.auth import views as auth_views #import this
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.staticfiles.urls import static
+from . import settings
 urlpatterns = [
     re_path('usuarios/',include('usuarios.urls')),
     re_path('admin/', admin.site.urls),
@@ -35,3 +38,5 @@ urlpatterns = [
 
    
 ]
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

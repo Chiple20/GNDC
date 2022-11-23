@@ -159,3 +159,5 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'gndc.dataknights@gmail.com'
 EMAIL_HOST_PASSWORD = 'cwkkqjyjucepqshb'
+
+CSRF_TRUSTED_ORIGINS = ['https://gndc.azurewebsites.net']
