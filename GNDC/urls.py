@@ -34,9 +34,7 @@ urlpatterns = [
         success_url=reverse_lazy('password_reset_complete')),name='password_reset_confirm'),
     re_path('password_reset_complete',auth_views.PasswordResetCompleteView.as_view(
          template_name='registration/Change.html',
-         ),name='password_reset_complete'),
-
-   
+         ),name='password_reset_complete'), 
 ]
-urlpatterns += staticfiles_urlpatterns()
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns += staticfiles_urlpatterns()
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
