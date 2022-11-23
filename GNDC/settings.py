@@ -140,12 +140,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-#STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATIC_URL = '/static/'  
-# para los ccs y todo lo demas 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'GNDC/static'),)
-
+# #STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# STATIC_URL = '/static/'  
+# # para los ccs y todo lo demas 
+# # STATICFILES_DIRS = (os.path.join(BASE_DIR, 'GNDC/static'),)
+# STATICFILES_DIRS = (
+# os.path.join(BASE_DIR, 'static/'), #Not Required since you already mentioned it in STATIC_URL
+# ('GNDC', os.path.join(BASE_DIR, 'GNDC', 'static')),
+# )
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #################################################
 AUTH_USER_MODEL = 'usuarios.Usuario' 
@@ -160,3 +163,16 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'gndc.dataknights@gmail.com'
 EMAIL_HOST_PASSWORD = 'cwkkqjyjucepqshb'
 CSRF_TRUSTED_ORIGINS = ['https://gndc.azurewebsites.net']
+
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+   ('usuarios', os.path.join(BASE_DIR, 'usuarios', 'static')),
+)
+STATICFILES_FINDERS = (
+  'django.contrib.staticfiles.finders.FileSystemFinder',
+  'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
