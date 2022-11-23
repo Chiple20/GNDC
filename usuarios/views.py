@@ -57,6 +57,82 @@ def predicción(request):
         return render(request,'usuarios/prediccion.html', contexto)
 
 @login_required
+def pred2(request):
+    variables = [
+                "Nom_productos",
+                "IPC",
+                "Precio",
+                "Año",
+                "Mes"
+            ]
+    for i in range(1,13):
+        print("<option value='",i,"'>",i,"</option>")
+    if request.method == "GET":
+        contexto = {
+            "variables": variables
+        }
+        return render(request,'usuarios/prediccion_2.html', contexto)
+    elif request.method == "POST":
+        valores_formulario = []
+        for var in variables:
+            valores_formulario.append(request.POST.get(var))
+        mejor_modelo = load(settings.RUTA_MODELO2)
+        print(valores_formulario)
+        prediccion=pd.DataFrame([valores_formulario])
+        resultado = mejor_modelo.predict(prediccion)
+        final=(np.round(resultado)).astype('int')
+        final=str(final).replace("[","")
+        final=str(final).replace("]","")
+        final="{:,}".format(int(final))
+        final=str("$"+final).replace(",",".")
+      
+        print(final)
+      
+        print(resultado)
+
+        contexto = {
+            "variables": variables,
+            "resultado":final
+        }
+        return render(request,'usuarios/prediccion_2.html', contexto)
+
+@login_required        
+def pred3(request):
+    variables = [
+                "Categoria",
+                "Año",
+                "Mes"
+            ]
+    if request.method == "GET":
+        contexto = {
+            "variables": variables
+        }
+        return render(request,'usuarios/prediccion_3.html', contexto)
+    elif request.method == "POST":
+        valores_formulario = []
+        for var in variables:
+            valores_formulario.append(request.POST.get(var))
+        mejor_modelo = load(settings.RUTA_MODELO3)
+        print(valores_formulario)
+        prediccion=pd.DataFrame([valores_formulario])
+        resultado = mejor_modelo.predict(prediccion)
+        final=(np.round(resultado)).astype('int')
+        final=str(final).replace("[","")
+        final=str(final).replace("]","")
+        final="{:,}".format(int(final))
+        final=str(final).replace(","," ")
+      
+        print(final)
+      
+        print(resultado)
+
+        contexto = {
+            "variables": variables,
+            "resultado":final
+        }
+        return render(request,'usuarios/prediccion_3.html', contexto)
+
+@login_required
 def dashboard(request):
     print("INDEX")
     context ={}

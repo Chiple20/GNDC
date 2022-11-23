@@ -84,21 +84,63 @@
 
 
 {% load static %}
-<div class="col-5">
+
+<div class="col-xl-5">
   <form action="" method="POST" class="container row">
     {% csrf_token %}
-    
-    <fieldset class="row col-12">
+    <fieldset class="row col-xl-12">
       <legend>Predicción:
-        Total de Venta</legend>
-      {% for var in variables %}
-      <div class="col-1"></div>
-        <div class="col-10 form-group">
-          <label for="{{var}}" > {{var}}</label>
-          <input type="text" required name="{{var}}" id="{{var}}" class="form-control">
-        </div>
-      <div class="col-1"></div>
-      {% endfor %}    
+        Cantidad vendido</legend>
+    
+    <div class="col-xl-1"></div>
+      <div class="col-xl-10 form-group">
+        <label for="Categoria" >Nombre Producto</label>
+            <select required name="Categoria" id="Categoria" class="form-control"  required>
+              <option value="5" selected>Despensa</option>
+              <option value="7" >Lacteos</option>
+              <option value="3" >Congelados</option>
+              <option value="9" >Vinos, Cervezas y Licores</option>
+              <option value="0" >Belleza y Cuidado personal</option>
+              <option value="4" >Desayuno y Dulces</option>
+              <option value="6" >Frutas y Verduras</option>
+              <option value="1" >Carniceria</option>
+              <option value="8" >Pescaderia</option>
+              <option value="2" >Comidas Preparadas</option>
+            </select>
+      </div>
+    <div class="col-xl-1"></div>
+       
+    <div class="col-xl-1"></div>
+      <div class="col-xl-10 form-group">
+        <label for="Año" >Año</label>
+            <select required name="Año" id="Año" class="form-control"  required>
+              <option value="2020" selected>2020</option>
+              <option value="2021" >2021</option>
+              <option value="2022" >2022</option>
+            </select>
+      </div>
+    <div class="col-xl-1"></div>
+    
+    <div class="col-xl-1"></div>
+      <div class="col-xl-10 form-group">
+        <label for="Mes" > Mes</label>
+            <select required name="Mes" id="Mes" class="form-control"  required>
+              <option value='1'> 1 </option>
+              <option value='2'> 2 </option>
+              <option value='3'> 3 </option>
+              <option value='4'> 4 </option>
+              <option value='5'> 5 </option>
+              <option value='6'> 6 </option>
+              <option value='7'> 7 </option>
+              <option value='8'> 8 </option>
+              <option value='9'> 9 </option>
+              <option value='10'> 10 </option>
+              <option value='11'> 11 </option>
+              <option value='12'> 12 </option>
+            </select>
+      </div>
+    <div class="col-xl-1"></div>
+        
         <button type="submit" class="btn btn-primary btn-block" role="submit">Predecir</button>
     </fieldset>
   </form>
@@ -106,31 +148,17 @@
 
 <div class="col-xl-4">
   <br>
+  <br>
+  <br>
+
   {% if resultado %}
   
   <br>
-  <h3 class="Letra">El total de ventas sera de: {{resultado}}</h3>
+  <h3 class="Letra">Se estima que se venderan  una cantidad de {{resultado}} productos</h3>
 
   {% endif %}
 
 </div>
-
-<script type="text/javascript"> 
-  //Solo numeros
-  function valideKey(evt){
-    
-    // code is the decimal ASCII representation of the pressed key.
-    var code = (evt.which) ? evt.which : evt.keyCode;
-    
-    if(code==8) { // backspace.
-      return true;
-    } else if(code>=48 && code<=57) { // is a number.
-      return true;
-    } else{ // other keys.
-      return false;
-    }
-}
-</script>
 
 {% elif user.id_rol.cargo != 'Jefe de Tienda' %}
 
@@ -148,4 +176,3 @@
 {% endif %}
 
 {% endblock %}
-
