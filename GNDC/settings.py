@@ -30,7 +30,7 @@ SECRET_KEY = '93l(+vpmkg)t3yeu4(^v09$%h5172e7moc!glr5-tkm2j1judn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://gndc.azurewebsites.net/"]
+ALLOWED_HOSTS = []
 
 #para los Super POPUP
 
