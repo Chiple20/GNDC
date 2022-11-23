@@ -1,0 +1,130 @@
+{% extends  "base.html" %}
+
+{% block title %} Predicción {% endblock %}
+
+{% block subtitle %}
+<a class="navbar-brand" href="javascript:;">Predicción</a>
+{% endblock %}
+
+{% block content %}
+
+{% if user.id_rol.cargo == 'Administrador' %}
+
+  <li>
+    <a href="{% url 'Añadir' %}">
+      <i class="centrar bi bi-person-fill icon"></i>
+      <p>Administrador</p>
+    </a>
+  </li>
+
+{% elif user.id_rol.cargo != 'Administrador' %}
+
+  <li  >
+    <a href="{% url 'dashboard' %}">
+      <i class="centrar bi bi-speedometer2 icon"></i>
+      <p>Dashboard</p>
+    </a>
+  </li>
+
+      {% if user.id_rol.cargo == 'Gerente' %}
+        <li>
+          <a href="{% url 'Perfil' %}">
+            <i class="centrar bi bi-person-fill icon"></i>
+            <p>Gerente</p>
+          </a>
+        </li>
+
+        {% elif user.id_rol.cargo == 'Jefe de tienda' %}
+        <li class="active ">
+          <a href="{% url 'predicción' %}">
+            <i class="centrar bi bi-magic icon"></i>
+            <p>Predicción</p>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'Perfil' %}">
+            <i class="centrar bi bi-person-fill icon"></i>
+            <p>Jefe de Tienda</p>
+          </a>
+        </li>
+        
+        {% elif user.id_rol.cargo == 'Cajero' %}
+
+        <li>
+          <a href="{% url 'Perfil' %}">
+            <i class="centrar bi bi-person-fill icon"></i>
+            <p>Cajero</p>
+          </a>
+        </li>
+      
+
+      {% endif %}
+
+{% endif %}
+
+{% endblock %}
+
+{% block content2 %}
+
+{% if user.id_rol.cargo == 'Jefe de tienda' %}
+
+
+{% load static %}
+<div class="col-1">
+</div>
+<div class="col-3">
+  <form action="" method="POST" class="container row">
+    {% csrf_token %}
+    {% for var in variables %}
+    <fieldset class="row col-12">
+      <legend>Predicción:
+        Total de Venta</legend>
+      <div class="col s6 form-group">
+        <label for="{{var}}" > {{var}}</label>
+        <input type="text" required name="{{var}}" id="{{var}}" class="form-control" onkeypress="return valideKey(event)" maxlength="6">
+      </div>
+    {% endfor %}    
+        <button type="submit" class="btn btn-primary btn-block" role="submit">Predecir</button>
+    </fieldset>
+  </form>
+  <div class="centrar">
+  
+    <p>{{resultado}}</p>
+  
+  </div>
+</div>
+<script type="text/javascript"> 
+  //Solo numeros
+  function valideKey(evt){
+    
+    // code is the decimal ASCII representation of the pressed key.
+    var code = (evt.which) ? evt.which : evt.keyCode;
+    
+    if(code==8) { // backspace.
+      return true;
+    } else if(code>=48 && code<=57) { // is a number.
+      return true;
+    } else{ // other keys.
+      return false;
+    }
+}
+</script>
+
+{% elif user.id_rol.cargo != 'Jefe de tienda' %}
+
+<div class="col-1"></div>
+
+<div class="col-9">
+
+<H1>ACCESO DENEGADO</H1>
+<h4>USTED NO POSEE LOS PERMISOS PARA INTERACTUAR CON ESTA PÁGINA</h4>
+<br>
+<h5>Por favor, utilice las opciones que se encuentran en la barra de navegación que se encuentran a su izquierda</h5>
+
+</div>
+
+
+
+{% endif %}
+
+{% endblock %}
