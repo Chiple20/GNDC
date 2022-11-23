@@ -8,7 +8,6 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from GNDC import settings
 from django.conf import settings
-from asyncio.windows_events import NULL
 import pandas as pd
 import random 
 import numpy as np
