@@ -147,7 +147,7 @@ USE_TZ = True
 #STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_ROOT = './static/'
-STATIC_URL = '/static/'  
+STATIC_URL = os.path.join(BASE_DIR, 'static/') 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # para los ccs y todo lo demas 
 STATICFILES_DIRS = '/static'
@@ -163,5 +163,5 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'gndc.dataknights@gmail.com'
-EMAIL_HOST_PASSWORD = 'cwkkqjyjucepqshb'
+EMAIL_HOST_PASSWORD = 'ydlhopdslevrnciv'
 CSRF_TRUSTED_ORIGINS = ['https://gndc.azurewebsites.net']
