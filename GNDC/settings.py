@@ -150,7 +150,7 @@ STATIC_ROOT = './static/'
 STATIC_URL = '/static/'  
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # para los ccs y todo lo demas 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, '/static'),)
+STATICFILES_DIRS = '/static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #################################################
