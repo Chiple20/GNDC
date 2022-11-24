@@ -14,9 +14,8 @@ from lib2to3.pgen2.driver import Driver
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-#BASE_DIR = Path(__file__).resolve().parent.parent
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-REPOSITORY_ROOT = os.path.dirname(BASE_DIR)
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 ###RUTA DEL MODELO
 from os.path import join
 RUTA_MODELO = join(BASE_DIR, 'prediccion_Total_venta.py')
@@ -59,6 +58,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -66,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'GNDC.urls'
 
@@ -144,11 +145,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 #STATIC_URL = '/static/'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = './static/'
 STATIC_URL = '/static/'  
-STATIC_ROOT = os.path.join(REPOSITORY_ROOT, 'static/')
-
 # para los ccs y todo lo demas 
-STATICFILES_DIRS = (os.path.join(REPOSITORY_ROOT, 'GNDC/static'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'GNDC/static'),)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #################################################
@@ -156,7 +157,6 @@ AUTH_USER_MODEL = 'usuarios.Usuario'
 #################################################
 
 # Config demo mail
-
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
