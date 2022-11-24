@@ -147,6 +147,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'  
 # para los ccs y todo lo demas 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'GNDC/static'),)
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #################################################
 AUTH_USER_MODEL = 'usuarios.Usuario' 
