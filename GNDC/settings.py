@@ -30,7 +30,7 @@ RUTA_MODELO3 = join(BASE_DIR, 'prediccion_cantidad_total.py')
 SECRET_KEY = '93l(+vpmkg)t3yeu4(^v09$%h5172e7moc!glr5-tkm2j1judn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -144,11 +144,9 @@ USE_TZ = True
 
 #STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-
 STATIC_URL = '/static/'  
 # para los ccs y todo lo demas 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'GNDC/static'),)
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #################################################
 AUTH_USER_MODEL = 'usuarios.Usuario' 
