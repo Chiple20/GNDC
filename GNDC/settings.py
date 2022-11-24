@@ -19,6 +19,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ###RUTA DEL MODELO
 from os.path import join
 RUTA_MODELO = join(BASE_DIR, 'prediccion_Total_venta.py')
+RUTA_MODELO2 = join(BASE_DIR, 'prediccion_precio_ipc.py')
+RUTA_MODELO3 = join(BASE_DIR, 'prediccion_cantidad_total.py')
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,7 +30,7 @@ RUTA_MODELO = join(BASE_DIR, 'prediccion_Total_venta.py')
 SECRET_KEY = '93l(+vpmkg)t3yeu4(^v09$%h5172e7moc!glr5-tkm2j1judn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -142,6 +144,7 @@ USE_TZ = True
 
 #STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
 STATIC_URL = '/static/'  
 # para los ccs y todo lo demas 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'GNDC/static'),)
