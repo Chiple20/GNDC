@@ -66,7 +66,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'GNDC.urls'
 
@@ -140,17 +140,15 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)s
+# Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 #STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATIC_ROOT = './static/'
-STATIC_URL = os.path.join(BASE_DIR, 'static/') 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+STATIC_URL = '/static/'  
 # para los ccs y todo lo demas 
-STATICFILES_DIRS = '/static'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'GNDC/static'),)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #################################################
@@ -158,6 +156,7 @@ AUTH_USER_MODEL = 'usuarios.Usuario'
 #################################################
 
 # Config demo mail
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
@@ -165,3 +164,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'gndc.dataknights@gmail.com'
 EMAIL_HOST_PASSWORD = 'ydlhopdslevrnciv'
 CSRF_TRUSTED_ORIGINS = ['https://gndc.azurewebsites.net']
+
+
+
