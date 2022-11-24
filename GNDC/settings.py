@@ -14,8 +14,9 @@ from lib2to3.pgen2.driver import Driver
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+#BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+REPOSITORY_ROOT = os.path.dirname(BASE_DIR)
 ###RUTA DEL MODELO
 from os.path import join
 RUTA_MODELO = join(BASE_DIR, 'prediccion_Total_venta.py')
@@ -143,10 +144,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 #STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'  
+STATIC_ROOT = os.path.join(REPOSITORY_ROOT, 'static/')
+
 # para los ccs y todo lo demas 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'GNDC/static'),)
+STATICFILES_DIRS = (os.path.join(REPOSITORY_ROOT, 'GNDC/static'),)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #################################################
