@@ -233,7 +233,9 @@ def AgregarUsuario(request):
                print(usuario)
                template = get_template('usuarios/Correo.html')
                # Se renderiza el template y se envias parametros
+               print('template')
                content = template.render({'email': Vcorreo,'contraseña':Vpassword})
+               print('template2')
                # Se crea el correo (titulo, mensaje, emisor, destinatario)
                msg = EmailMultiAlternatives('Contraseña de usuario','Le enviamos la contraseña de usuario',settings.EMAIL_HOST_USER,[Vcorreo])
                msg.attach_alternative(content, 'text/html')
