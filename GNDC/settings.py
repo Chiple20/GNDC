@@ -31,7 +31,7 @@ RUTA_MODELO3 = join(BASE_DIR, 'prediccion_cantidad_total.py')
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # DEBUG_PROPAGATE_EXCEPTIONS = True
 ALLOWED_HOSTS = ["*"]
 
