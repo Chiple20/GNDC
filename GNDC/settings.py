@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 from pathlib import Path
 from lib2to3.pgen2.driver import Driver
 import os
-from decouple import config
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +28,7 @@ RUTA_MODELO3 = join(BASE_DIR, 'prediccion_cantidad_total.py')
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = '93l(+vpmkg)t3yeu4(^v09$%h5172e7moc!glr5-tkm2j1judn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -90,6 +90,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'GNDC.wsgi.application'
 
 
+
+
+
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -97,10 +100,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'mssql',
         #'ENGINE': 'sql_server.pyodbc',
-        'NAME': config('NAME'),
-        'USER': config('USER'),
-        'PASSWORD':config('PASSWORD'),
-        'HOST':config('HOST'),
+        'NAME': 'GNDC',
+        'USER': 'GNDC',
+        'PASSWORD':'Admin123',
+        'HOST':'misqlservidorgndc.database.windows.net',
         'PORT': '',
         'OPTIONS': {
              'driver': 'ODBC Driver 17 for SQL Server',
@@ -159,11 +162,11 @@ AUTH_USER_MODEL = 'usuarios.Usuario'
 # Config demo mail
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = 'gndc.dataknights@gmail.com'
+EMAIL_HOST_PASSWORD = 'wdlhjyzmlcagxfja'
 CSRF_TRUSTED_ORIGINS = ['https://gndc.azurewebsites.net']
 
 
