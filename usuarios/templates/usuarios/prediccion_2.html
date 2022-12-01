@@ -114,7 +114,7 @@
   <div class="col-xl-1"></div>
     <div class="col-xl-10 form-group">
       <label for="Precio" > Precio</label>
-      <input type="text" required name="Precio" id="Precio" class="form-control">
+      <input type="text" required name="Precio" id="Precio" class="form-control" onkeypress="return valideKey(event)">
     </div>
   <div class="col-xl-1"></div>
   
@@ -122,9 +122,8 @@
     <div class="col-xl-10 form-group">
       <label for="Año" >Año</label>
           <select required name="Año" id="Año" class="form-control"  required>
-            <option value="2020" selected>2020</option>
-            <option value="2021" >2021</option>
             <option value="2022" >2022</option>
+            <option value="2023" >2023</option>
           </select>
     </div>
   <div class="col-xl-1"></div>
@@ -168,6 +167,22 @@
   {% endif %}
 
 </div>
+<script type="text/javascript"> 
+  //Solo numeros
+  function valideKey(evt){
+    
+    // code is the decimal ASCII representation of the pressed key.
+    var code = (evt.which) ? evt.which : evt.keyCode;
+    
+    if(code==8) { // backspace.
+      return true;
+    } else if(code>=48 && code<=57) { // is a number.
+      return true;
+    } else{ // other keys.
+      return false;
+    }
+}
+</script>
 
 {% elif user.id_rol.cargo != 'Jefe de Tienda' %}
 

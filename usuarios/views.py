@@ -28,7 +28,8 @@ def index(request):
 @login_required
 def predicción(request):
     variables = [
-                "Periodo"
+                "Año",
+                "Mes"
             ]
     if request.method == "GET":
         contexto = {
@@ -37,8 +38,14 @@ def predicción(request):
         return render(request,'usuarios/prediccion.html', contexto)
     elif request.method == "POST":
         valores_formulario = []
+        datos = "."
         for var in variables:
-            valores_formulario.append(request.POST.get(var))
+            dat= str(request.POST.get(var))
+            datos = datos + dat
+        datos=str(datos).replace(".","")
+        datos=int(datos)
+        print(datos)
+        valores_formulario.append(datos)
         mejor_modelo = load(settings.RUTA_MODELO)
         prediccion=pd.DataFrame(valores_formulario)
         resultado = mejor_modelo.predict(prediccion)
@@ -48,7 +55,7 @@ def predicción(request):
         final="{:,}".format(int(final))
         final=str("$"+final).replace(",",".")
       
-        print(final)
+        print(resultado)
 
         contexto = {
             "variables": variables,
@@ -169,10 +176,38 @@ def Perfil(request):
     context ={}
     return render(request, 'usuarios/Perfil.html', context)
 
+@login_required
 def Password(request):
-    print("Añadir")
     context ={}
-    return render(request, 'usuarios/password.html', context)
+    if request.method == "GET":
+        return render(request, 'usuarios/password.html', context)
+        
+    elif request.method == "POST":
+        try:
+            Gmail = request.POST['Mail']
+            print(request.POST['passA'])
+            print(request.POST['pass1'])
+            print(request.POST['pass2'])
+            u = Usuario.objects.get(email=Gmail)
+            if u.check_password(request.POST['passA']) == True:
+                if request.POST['pass1'] == request.POST['pass2']:
+                    u.set_password(request.POST['pass2'])
+                    u.save() 
+                    return redirect(to=Perfil)
+                else:
+                    messages.error(request,"Sus Contraseñas no coinciden") 
+                    print("salio mal")
+                    return render(request, 'usuarios/password.html', context)
+
+            else:
+                messages.error(request,"Su Contraseña es incorrecta") 
+                print("salio mal")
+                return render(request, 'usuarios/password.html', context)
+
+        except IntegrityError as e:
+            messages.error(request,"No se pudo cambiar su contraseña") 
+            print("salio mal")
+            return render(request, 'usuarios/password.html', context)
 
 ## pruebas
 def borraUsuarios(request):

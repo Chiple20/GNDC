@@ -85,21 +85,42 @@
 
 {% load static %}
 <div class="col-5">
-  <form action="" method="POST" class="container row">
+  <form action="" id="pre" method="POST" class="container row">
     {% csrf_token %}
     
     <fieldset class="row col-12">
       <legend>Predicción:
         Total de Venta</legend>
-      {% for var in variables %}
-      <div class="col-1"></div>
-        <div class="col-10 form-group">
-          <label for="{{var}}" > {{var}}</label>
-          <input type="text" required name="{{var}}" id="{{var}}" class="form-control"  onkeypress="return valideKey(event)" maxlength="6">
+        <div class="col-xl-1"></div>
+        <div class="col-xl-10 form-group">
+          <label for="Año" >Año</label>
+              <select required name="Año" id="Año" class="form-control"  required>
+                <option value="2022" >2022</option>
+                <option value="2023" >2023</option>
+              </select>
         </div>
-      <div class="col-1"></div>
-      {% endfor %}    
-        <button type="submit" class="btn btn-primary btn-block" role="submit">Predecir</button>
+      <div class="col-xl-1"></div>
+      
+      <div class="col-xl-1"></div>
+        <div class="col-xl-10 form-group">
+          <label for="Mes" > Mes</label>
+              <select required name="Mes" id="Mes" class="form-control"  required>
+                <option value='01'>Enero</option>
+                <option value='02'>Febrero</option>
+                <option value='03'>Marzo</option>
+                <option value='04'>Abril</option>
+                <option value='05'>Mayo</option>
+                <option value='06'>Junio</option>
+                <option value='07'>Julio</option>
+                <option value='08'>Agosto</option>
+                <option value='09'>Septiembre</option>
+                <option value='10'>Octubre</option>
+                <option value='11'>Noviembre</option>
+                <option value='12'>Diciembre</option>
+              </select>
+        </div>
+      <div class="col-xl-1"></div> 
+        <button type="submit" class="btn btn-primary btn-block" onclick="pregunta()" role="submit">Predecir</button>
     </fieldset>
   </form>
 </div>
@@ -115,22 +136,6 @@
 
 </div>
 
-<script type="text/javascript"> 
-  //Solo numeros
-  function valideKey(evt){
-    
-    // code is the decimal ASCII representation of the pressed key.
-    var code = (evt.which) ? evt.which : evt.keyCode;
-    
-    if(code==8) { // backspace.
-      return true;
-    } else if(code>=48 && code<=57) { // is a number.
-      return true;
-    } else{ // other keys.
-      return false;
-    }
-}
-</script>
 
 {% elif user.id_rol.cargo != 'Jefe de Tienda' %}
 
@@ -148,4 +153,3 @@
 {% endif %}
 
 {% endblock %}
-
