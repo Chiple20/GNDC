@@ -209,7 +209,6 @@ def Password(request):
             print("salio mal")
             return render(request, 'usuarios/password.html', context)
 
-## pruebas
 def borraUsuarios(request):
     print("borraUsuarios")
     listaUsuarios =Usuario.objects.all()
