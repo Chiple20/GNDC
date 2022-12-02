@@ -170,7 +170,7 @@ def Listado(request):
 #################################################################       
 
 #PERFIL
-
+@login_required
 def Perfil(request):
     print("Añadir")
     context ={}
